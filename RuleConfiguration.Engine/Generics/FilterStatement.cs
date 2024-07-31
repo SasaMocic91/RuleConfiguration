@@ -105,6 +105,12 @@ public class FilterStatement<TPropertyType> : IFilterStatement
 
     private void ValidateSupportedOperations(OperationHelper helper)
     {
+        if (typeof(TPropertyType) == typeof(object))
+        {
+             // Ignore type object, operations are not supported.
+            return;
+        }
+
         var supportedOperations = helper.SupportedOperations(typeof(TPropertyType));
 
         if (!supportedOperations.Contains(Operation))
@@ -120,13 +126,13 @@ public class FilterStatement<TPropertyType> : IFilterStatement
         switch (Operation.NumberOfValues)
         {
             case 0:
-                return $"{PropertyId} {Operation}";
+                return string.Format("{0} {1}", PropertyId, Operation);
 
             case 2:
-                return $"{PropertyId} {Operation} {Value} And {Value2}";
+                return string.Format("{0} {1} {2} And {3}", PropertyId, Operation, Value, Value2);
 
             default:
-                return $"{PropertyId} {Operation} {Value}";
+                return string.Format("{0} {1} {2}", PropertyId, Operation, Value);
         }
     }
 }

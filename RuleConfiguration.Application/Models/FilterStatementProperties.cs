@@ -1,9 +1,11 @@
 
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using RuleConfiguration.Engine.Common;
 
 namespace RuleConfiguration.Models;
 
+[BsonIgnoreExtraElements]
 public class FilterStatementProperties
 {
     public Connector Connector { get; set; }

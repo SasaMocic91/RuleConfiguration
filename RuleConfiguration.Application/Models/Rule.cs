@@ -1,8 +1,11 @@
-﻿namespace RuleConfiguration.Models;
+﻿using MongoDB.Bson.Serialization.Attributes;
 
+namespace RuleConfiguration.Models;
 
+[BsonIgnoreExtraElements]
 public class Rule
 {
+    [BsonId]
     public Guid Id { get; set; }
 
     public Guid TenantId { get; set; }

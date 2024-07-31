@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using MongoDB.Bson;
 using RuleConfiguration.Engine;
+using RuleConfiguration.Engine.Common;
 using RuleConfiguration.Engine.Generics;
 using RuleConfiguration.Engine.Operations;
 using RuleConfiguration.Models;
@@ -67,9 +68,13 @@ public class RulesCache : IRulesCache
             foreach (var condition in rule.Value.Conditions)
             {
                 var filter = new Filter<Ticket>();
+
+                var value1 = Convert(condition.Value);
+                var value2 = Convert(condition.Value2);
+                    
                 filter.StartGroup();
                 filter.By(condition.PropertyId, Operation.ByName(condition.Operation),
-                    Convert(condition.Value), Convert(condition.Value2),
+                    value1, value2,
                     condition.Connector);
 
                 var filterBuilder = new FilterBuilder();
@@ -90,15 +95,28 @@ public class RulesCache : IRulesCache
 
         var type = val.GetType();
 
-        object result = type.Name switch
+        object result;
+
+
+        switch (type.Name)
         {
-            "BsonString" => val.ToString(),
-            "BsonInt32" => int.Parse(val.ToString()),
-            "BsonInt64" => long.Parse(val.ToString()!),
-            "BsonDecimal128" => decimal.Parse(val.ToString()!),
-            "BsonBoolean" => bool.Parse(val.ToString()),
-            _ => throw new NotSupportedException()
-        };
+            case "BsonString":
+                result = val.ToString();
+                break;
+            case "BsonInt32":
+                result = int.Parse(val.ToString());
+                break;
+            case "BsonInt64":
+                result = long.Parse(val.ToString()!);
+                break;
+            case "BsonDecimal128":
+                result = decimal.Parse(val.ToString()!);
+                break;
+            case "BsonBoolean":
+                result = bool.Parse(val.ToString());
+                break;
+            default: throw new NotSupportedException();
+        }
 
         return result;
     }
