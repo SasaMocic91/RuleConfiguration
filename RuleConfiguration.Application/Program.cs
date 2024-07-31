@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
+using RuleConfiguration.Handlers;
 using RuleConfiguration.Models;
 using RuleConfiguration.Modifiers;
+using RuleConfiguration.Requests;
 using RuleConfiguration.Storage;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IMongoDb, MongoDb>();
 builder.Services.AddTransient<IRulesCache,RulesCache>();
 builder.Services.AddTransient<IModifierRepo, ModifierRepo>();
+builder.Services.AddTransient<IRuleHandler, RuleHandler>();
+builder.Services.AddTransient<ITicketHandler, TicketHandler>();
+
 builder.Services.AddMemoryCache();
 
 var app = builder.Build();
@@ -25,6 +30,39 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+
+app.MapPost("/rules",
+        async (IRuleHandler ruleHandler, AddRuleRequest request) =>
+        {
+            var result = await ruleHandler.StoreRule(request);
+            return Results.Ok();
+        })
+    .WithName("AddRule");
+
+app.MapGet("/rules/{tenantId}/{name}", async (IRuleHandler ruleHandler, Guid tenantId, string name) =>
+    {
+        var result = await ruleHandler.GetRule(tenantId, name);
+        return result is not null ? Results.Ok(result) : Results.BadRequest();
+    })
+    .WithName("GetRule");
+
+app.MapGet("/rules/{tenantId}", async (IRuleHandler ruleHandler, Guid tenantId) =>
+    {
+        var result = await ruleHandler.GetRules(tenantId);
+        return result is not null ? Results.Ok(result) : Results.BadRequest();
+    })
+    .WithName("GetRules");
+
+app.MapPost("/tickets", async (ITicketHandler ticketHandler, Ticket ticket) =>
+    {
+        var result = await ticketHandler.CheckTicket(ticket);
+        return result is not null ? Results.Ok(result) : Results.BadRequest();
+    })
+    .WithName("CheckTicket");
+
+
+app.Run();
 
 
 [ExcludeFromCodeCoverage]
