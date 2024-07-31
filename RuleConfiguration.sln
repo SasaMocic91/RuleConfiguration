@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuleConfiguration.Application", "RuleConfiguration.Application\RuleConfiguration.Application.csproj", "{833628B0-7F42-468A-9BCC-F4D3030A7607}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuleConfiguration.Engine", "RuleConfiguration.Engine\RuleConfiguration.Engine.csproj", "{A6345606-A9B4-4E43-9971-4A6112360222}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{833628B0-7F42-468A-9BCC-F4D3030A7607}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{833628B0-7F42-468A-9BCC-F4D3030A7607}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{833628B0-7F42-468A-9BCC-F4D3030A7607}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{833628B0-7F42-468A-9BCC-F4D3030A7607}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6345606-A9B4-4E43-9971-4A6112360222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6345606-A9B4-4E43-9971-4A6112360222}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6345606-A9B4-4E43-9971-4A6112360222}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6345606-A9B4-4E43-9971-4A6112360222}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
