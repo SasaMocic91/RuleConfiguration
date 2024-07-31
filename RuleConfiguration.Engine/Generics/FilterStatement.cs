@@ -105,13 +105,6 @@ public class FilterStatement<TPropertyType> : IFilterStatement
 
     private void ValidateSupportedOperations(OperationHelper helper)
     {
-        if (typeof(TPropertyType) == typeof(object))
-        {
-            //TODO: Issue regarding the TPropertyType that comes from the UI always as 'Object'
-            Debug.WriteLine("WARN: Not able to check if the operation is supported or not.");
-            return;
-        }
-
         var supportedOperations = helper.SupportedOperations(typeof(TPropertyType));
 
         if (!supportedOperations.Contains(Operation))
@@ -127,13 +120,13 @@ public class FilterStatement<TPropertyType> : IFilterStatement
         switch (Operation.NumberOfValues)
         {
             case 0:
-                return string.Format("{0} {1}", PropertyId, Operation);
+                return $"{PropertyId} {Operation}";
 
             case 2:
-                return string.Format("{0} {1} {2} And {3}", PropertyId, Operation, Value, Value2);
+                return $"{PropertyId} {Operation} {Value} And {Value2}";
 
             default:
-                return string.Format("{0} {1} {2}", PropertyId, Operation, Value);
+                return $"{PropertyId} {Operation} {Value}";
         }
     }
 }
