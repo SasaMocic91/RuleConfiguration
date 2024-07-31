@@ -1,5 +1,5 @@
 ﻿using Bogus;
-using RuleConfigurator.Application.Models;
+using RuleConfiguration.Models;
 
 namespace RuleConfiguration.Engine.Tests.FakeData;
 

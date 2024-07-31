@@ -3,9 +3,9 @@ using Mongo2Go;
 using NUnit.Framework;
 using RuleConfiguration.Engine.Tests.FakeData;
 using RuleConfiguration.Engine.Tests.Helpers;
+using RuleConfiguration.Models;
 using RuleConfiguration.Modifiers;
 using RuleConfiguration.Storage;
-using RuleConfigurator.Application.Models;
 
 namespace RuleConfiguration.Engine.Tests;
 

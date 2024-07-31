@@ -4,7 +4,7 @@ using RuleConfiguration.Engine.Common;
 using RuleConfiguration.Engine.Generics;
 using RuleConfiguration.Engine.Interfaces;
 using RuleConfiguration.Engine.Operations;
-using RuleConfigurator.Application.Models;
+using RuleConfiguration.Models;
 
 namespace RuleConfiguration.Engine.Tests;
 
