@@ -27,14 +27,13 @@ public class In : OperationBase
         var type = constant1.Value.GetType();
         var inInfo = type.GetMethod("Contains", new[] { type.GetGenericArguments()[0] });
 
-        return GetExpressionHandlingNullables(member, constant1, type, inInfo) ??
-               Expression.Call(constant1, inInfo, member);
+        return GetExpressionHandlingNullables(member, constant1, type, inInfo);
     }
 
     private Expression GetExpressionHandlingNullables(MemberExpression member, ConstantExpression constant1, Type type,
         MethodInfo inInfo)
     {
-        var listUnderlyingType = Nullable.GetUnderlyingType(type.GetGenericArguments()[0]);
+        var listUnderlyingType = Nullable.GetUnderlyingType(type.GetGenericArguments().Single());
         var memberUnderlingType = Nullable.GetUnderlyingType(member.Type);
         if (listUnderlyingType != null && memberUnderlingType == null)
             return Expression.Call(constant1, inInfo, member.Expression);

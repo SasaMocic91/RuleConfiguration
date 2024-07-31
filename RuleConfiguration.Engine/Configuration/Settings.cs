@@ -9,11 +9,11 @@ public class Settings
     public static void LoadSettings(Settings settings)
     {
         var configSection =
-            ConfigurationManager.GetSection(ExpressionBuilderConfig.SectionName) as ExpressionBuilderConfig;
+            ConfigurationManager.GetSection(RuleBuilderConfig.SectionName) as RuleBuilderConfig;
         if (configSection == null) return;
 
         settings.SupportedTypes = new List<SupportedType>();
-        foreach (ExpressionBuilderConfig.SupportedTypeElement supportedType in configSection.SupportedTypes)
+        foreach (RuleBuilderConfig.SupportedTypeElement supportedType in configSection.SupportedTypes)
         {
             var type = Type.GetType(supportedType.Type, false, true);
             if (type != null)

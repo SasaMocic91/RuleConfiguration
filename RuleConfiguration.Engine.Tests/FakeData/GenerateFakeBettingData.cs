@@ -48,7 +48,7 @@ public static class GenerateFakeBettingData
 
         var tickets = new Faker<Ticket>()
             .RuleFor(x => x.Id, f => f.IndexFaker)
-            .RuleFor(x => x.Events, f => FakeEvents(4, 1M, 5M))
+            .RuleFor(x => x.Events, events)
             .RuleFor(x => x.Odds, f => odds)
             .RuleFor(x => x.Payin, f => f.Random.Decimal(1M, 11M))
             .RuleFor(x => x.WinAmount, (f, t) => t.Odds * t.Payin)

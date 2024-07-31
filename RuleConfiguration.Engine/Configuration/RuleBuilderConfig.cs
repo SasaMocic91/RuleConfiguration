@@ -1,10 +1,12 @@
 ﻿
 using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
 using RuleConfiguration.Engine.Common;
 
 namespace RuleConfiguration.Engine.Configuration;
 
-internal class ExpressionBuilderConfig : ConfigurationSection
+[ExcludeFromCodeCoverage]
+internal class RuleBuilderConfig : ConfigurationSection
 {
     public const string SectionName = "RuleConfiguration.Engine";
 

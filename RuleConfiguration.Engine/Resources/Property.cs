@@ -3,7 +3,7 @@
 namespace RuleConfiguration.Engine.Resources;
 
 /// <summary>
-///     Provides information on the property to the Expression Builder.
+///     Provides information on the property to the Rule Builder.
 /// </summary>
 public class Property
 {
@@ -15,7 +15,7 @@ public class Property
     }
 
     /// <summary>
-    ///     Property identifier conventionalized by the Expression Builder.
+    ///     Property identifier conventionalized by the Rule Builder.
     /// </summary>
     public string Id { get; }
 
