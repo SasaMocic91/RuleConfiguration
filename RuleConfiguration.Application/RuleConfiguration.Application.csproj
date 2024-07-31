@@ -7,4 +7,8 @@
         <RootNamespace>RuleConfiguration</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\RuleConfiguration.Engine\RuleConfiguration.Engine.csproj" />
+    </ItemGroup>
+
 </Project>
