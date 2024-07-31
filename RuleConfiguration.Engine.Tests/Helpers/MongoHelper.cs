@@ -3,7 +3,6 @@ using Mongo2Go;
 using MongoDB.Driver;
 using RuleConfiguration.Models;
 using RuleConfiguration.Storage;
-using RuleConfigurator.Application.Models;
 
 namespace RuleConfiguration.Engine.Tests.Helpers;
 
