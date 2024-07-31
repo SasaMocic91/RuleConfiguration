@@ -1,4 +1,5 @@
 
+using MongoDB.Bson;
 using RuleConfiguration.Engine.Common;
 
 namespace RuleConfiguration.Models;
@@ -10,6 +11,6 @@ public class FilterStatementProperties
     public string PropertyId { get; set; }
 
     public string Operation { get; set; }
-    public object Value { get; set; }
-    public object Value2 { get; set; }
+    public BsonValue Value { get; set; }
+    public BsonValue Value2 { get; set; }
 }
