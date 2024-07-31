@@ -15,11 +15,11 @@ public class FilterTests
     public void FilterShouldAddStatement()
     {
         var filter = new Filter<Ticket>();
-        filter.By("Name", Operation.Contains, "John");
+        filter.By("Id", Operation.EqualTo, 1);
         Assert.That(filter.Statements.Last().Count(), Is.EqualTo(1));
-        Assert.That(filter.Statements.Last().First().PropertyId, Is.EqualTo("Name"));
-        Assert.That(filter.Statements.Last().First().Operation, Is.EqualTo(Operation.Contains));
-        Assert.That(filter.Statements.Last().First().Value, Is.EqualTo("John"));
+        Assert.That(filter.Statements.Last().First().PropertyId, Is.EqualTo("Id"));
+        Assert.That(filter.Statements.Last().First().Operation, Is.EqualTo(Operation.EqualTo));
+        Assert.That(filter.Statements.Last().First().Value, Is.EqualTo(1));
         Assert.That(filter.Statements.Last().First().Connector, Is.EqualTo(Connector.And));
     }
 
