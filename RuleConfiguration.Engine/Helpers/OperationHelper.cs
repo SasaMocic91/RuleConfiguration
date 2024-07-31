@@ -107,7 +107,7 @@ public class OperationHelper : IOperationHelper
     {
         var @interface = typeof(IOperation);
         var operationsFound = AppDomain.CurrentDomain.GetAssemblies()
-            .Where(a => a.DefinedTypes.Any(t => t.Namespace == "RuleConfigurator.Engine.Operations"))
+            .Where(a => a.DefinedTypes.Any(t => t.Namespace == "RuleConfiguration.Engine.Operations"))
             .SelectMany(s => s.GetTypes())
             .Where(p => @interface.IsAssignableFrom(p) && p.IsClass && !p.IsAbstract)
             .Select(t => (IOperation) Activator.CreateInstance(t));
