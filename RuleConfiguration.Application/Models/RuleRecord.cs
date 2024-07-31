@@ -1,6 +1,4 @@
-﻿using RuleConfigurator.Application.Models;
-
-namespace RuleConfiguration.Models;
+﻿namespace RuleConfiguration.Models;
 
 public class RuleRecord
 {

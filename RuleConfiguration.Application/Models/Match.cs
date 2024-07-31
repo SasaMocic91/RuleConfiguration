@@ -1,4 +1,4 @@
-﻿namespace RuleConfigurator.Application.Models;
+﻿namespace RuleConfiguration.Models;
 
 public class Match
 {

@@ -1,5 +1,8 @@
-﻿namespace RuleConfigurator.Application.Models;
+﻿using System.Diagnostics.CodeAnalysis;
 
+namespace RuleConfiguration.Models;
+
+[ExcludeFromCodeCoverage]
 public class DbSettings
 {
     public string ConnectionString { get; set; } = null!;

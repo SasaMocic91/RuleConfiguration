@@ -1,5 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
+using RuleConfiguration.Models;
+using RuleConfiguration.Modifiers;
 using RuleConfiguration.Storage;
-using RuleConfigurator.Application.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<DbSettings>(builder.Configuration.GetSection("RuleConfiguration.Db"));
@@ -9,7 +11,8 @@ builder.Services.Configure<DbSettings>(builder.Configuration.GetSection("RuleCon
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IMongoDb, MongoDb>();
-builder.Services.AddSingleton<IRulesCache, RulesCache>();
+builder.Services.AddTransient<IRulesCache,RulesCache>();
+builder.Services.AddTransient<IModifierRepo, ModifierRepo>();
 builder.Services.AddMemoryCache();
 
 var app = builder.Build();
@@ -22,3 +25,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+
+[ExcludeFromCodeCoverage]
+public static partial class Program
+{
+}

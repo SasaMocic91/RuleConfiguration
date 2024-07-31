@@ -1,11 +1,15 @@
 using RuleConfiguration.Models;
 using RuleConfiguration.Storage;
-using RuleConfigurator.Application.Models;
 using RuleConfigurator.Application.Modifiers;
 
 namespace RuleConfiguration.Modifiers;
 
-public class ModifierRepo(IRulesCache rulesCache)
+public interface IModifierRepo
+{
+    Task<Ticket> ApplyModifiers(Ticket ticket);
+}
+
+public class ModifierRepo(IRulesCache rulesCache) : IModifierRepo
 {
     private readonly List<IModifier> _allModifiers = new()
     {
@@ -23,7 +27,7 @@ public class ModifierRepo(IRulesCache rulesCache)
         return ticket;
     }
 
-    public async Task<List<IModifier>> GetModifiers(Ticket ticket)
+    private async Task<List<IModifier>> GetModifiers(Ticket ticket)
     {
         var modifiers = await FilterModifiers(ticket, _allModifiers);
         return modifiers.Distinct().ToList();

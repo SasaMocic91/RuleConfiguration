@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using RuleConfiguration.Models;
-using RuleConfigurator.Application.Models;
 
 namespace RuleConfiguration.Storage;
 

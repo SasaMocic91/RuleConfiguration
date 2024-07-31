@@ -5,7 +5,6 @@ using RuleConfiguration.Engine.Common;
 using RuleConfiguration.Engine.Generics;
 using RuleConfiguration.Engine.Operations;
 using RuleConfiguration.Models;
-using RuleConfigurator.Application.Models;
 
 namespace RuleConfiguration.Storage;
 

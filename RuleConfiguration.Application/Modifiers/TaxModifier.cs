@@ -1,4 +1,4 @@
-using RuleConfigurator.Application.Models;
+using RuleConfiguration.Models;
 
 namespace RuleConfigurator.Application.Modifiers;
 
