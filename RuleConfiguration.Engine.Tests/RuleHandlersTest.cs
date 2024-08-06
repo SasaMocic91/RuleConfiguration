@@ -5,9 +5,9 @@ using RuleConfiguration.Engine.Common;
 using RuleConfiguration.Engine.Operations;
 using RuleConfiguration.Engine.Tests.Helpers;
 using RuleConfiguration.Handlers;
-using RuleConfiguration.Models;
+using RuleConfiguration.Modifiers;
 using RuleConfiguration.Requests;
-using RuleConfigurator.Application.Modifiers;
+using RuleConfiguration.Storage.DbModels;
 
 namespace RuleConfiguration.Engine.Tests;
 

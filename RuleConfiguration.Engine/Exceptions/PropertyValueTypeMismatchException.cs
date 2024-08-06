@@ -1,9 +1,12 @@
-﻿namespace RuleConfiguration.Engine.Exceptions;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace RuleConfiguration.Engine.Exceptions;
 
 /// <summary>
 ///     Represents an attempt to set a property's value with an object of a different type from the property's type.
 /// </summary>
 [Serializable]
+[ExcludeFromCodeCoverage]
 public class PropertyValueTypeMismatchException : Exception
 {
     /// <summary>

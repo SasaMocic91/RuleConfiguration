@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 using RuleConfiguration.Engine.Common;
-using RuleConfiguration.Models;
+using RuleConfiguration.Storage.DbModels;
 
 namespace RuleConfiguration.Requests;
 

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace RuleConfiguration.Models;
+namespace RuleConfiguration.Storage.Models;
 
 [ExcludeFromCodeCoverage]
 public class DbSettings

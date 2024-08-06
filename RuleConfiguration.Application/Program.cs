@@ -1,9 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
 using RuleConfiguration.Handlers;
 using RuleConfiguration.Models;
-using RuleConfiguration.Modifiers;
+using RuleConfiguration.Repos;
 using RuleConfiguration.Requests;
 using RuleConfiguration.Storage;
+using RuleConfiguration.Storage.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<DbSettings>(builder.Configuration.GetSection("RuleConfiguration.Db"));
@@ -13,8 +14,7 @@ builder.Services.Configure<DbSettings>(builder.Configuration.GetSection("RuleCon
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IMongoDb, MongoDb>();
-builder.Services.AddTransient<IRulesCache,RulesCache>();
-builder.Services.AddTransient<IModifierRepo, ModifierRepo>();
+builder.Services.AddScoped<IRepoWrapper, RepoWrapper>();
 builder.Services.AddTransient<IRuleHandler, RuleHandler>();
 builder.Services.AddTransient<ITicketHandler, TicketHandler>();
 

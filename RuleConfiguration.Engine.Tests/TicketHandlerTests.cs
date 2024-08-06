@@ -3,7 +3,7 @@ using Mongo2Go;
 using NUnit.Framework;
 using RuleConfiguration.Engine.Tests.Helpers;
 using RuleConfiguration.Handlers;
-using RuleConfiguration.Modifiers;
+using RuleConfiguration.Repos;
 using RuleConfiguration.Storage;
 
 namespace RuleConfiguration.Engine.Tests;
@@ -13,12 +13,10 @@ public class TicketHandlerTests
 {
     private readonly Guid _tenantId = Guid.NewGuid();
 
-    private IModifierRepo SetupModifierRepo(IMongoDb db)
+    private IRepoWrapper SetupModifierRepo(IMongoDb db)
     {
         var memCache = new MemoryCache(new MemoryCacheOptions());
-
-        var rulesCache = new RulesCache(memCache, db);
-        var modifierRepo = new ModifierRepo(rulesCache);
+        var modifierRepo = new RepoWrapper(memCache, db);
         return  modifierRepo;
     }
 

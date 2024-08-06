@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\RuleConfiguration.Engine\RuleConfiguration.Engine.csproj" />
+      <ProjectReference Include="..\RuleConfiguration.Storage\RuleConfiguration.Storage.csproj" />
     </ItemGroup>
 
     <ItemGroup>

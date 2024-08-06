@@ -1,4 +1,4 @@
-﻿using RuleConfiguration.Models;
+﻿using RuleConfiguration.Storage.DbModels;
 
 namespace RuleConfiguration.Requests;
 

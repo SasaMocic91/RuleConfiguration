@@ -1,8 +1,9 @@
 using RuleConfiguration.Models;
+using RuleConfiguration.Storage.Repositories.Base;
 
-namespace RuleConfigurator.Application.Modifiers;
+namespace RuleConfiguration.Modifiers;
 
-public class BonusModifier : IModifier
+public class BonusModifier : IBaseModifier<Ticket>
 {
     public Ticket Modify(Ticket ticket)
     {
