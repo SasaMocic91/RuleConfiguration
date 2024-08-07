@@ -1,6 +1,5 @@
 using RuleConfiguration.Models;
-using RuleConfiguration.Modifiers;
-using RuleConfiguration.Storage;
+using RuleConfiguration.Repos;
 
 namespace RuleConfiguration.Handlers;
 
@@ -11,17 +10,17 @@ public interface ITicketHandler
 
 public class TicketHandler : ITicketHandler
 {
-    private readonly IModifierRepo _modifierRepo;
+    private readonly IRepositoryWrapper _repository;
 
-    public TicketHandler(IModifierRepo modifierRepo)
+    public TicketHandler(IRepositoryWrapper repository)
     {
-        _modifierRepo = modifierRepo;
+        _repository = repository;
     }
 
 
     public async Task<Ticket> CheckTicket(Ticket ticket)
     {
-        var result =await _modifierRepo.ApplyModifiers(ticket);
+        var result =await _repository.TicketModifiers.ApplyModifiers(ticket);
         return result;
     }
 }

@@ -1,8 +1,9 @@
 ﻿using Microsoft.Extensions.Options;
 using Mongo2Go;
 using MongoDB.Driver;
-using RuleConfiguration.Models;
 using RuleConfiguration.Storage;
+using RuleConfiguration.Storage.DbModels;
+using RuleConfiguration.Storage.Models;
 
 namespace RuleConfiguration.Engine.Tests.Helpers;
 

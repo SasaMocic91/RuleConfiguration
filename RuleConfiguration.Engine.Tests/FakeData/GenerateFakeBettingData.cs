@@ -28,12 +28,12 @@ public static class GenerateFakeBettingData
         return matches;
     }
 
-    public static List<Event> FakeEvents(int count, decimal minOdd, decimal maxOdd)
+    public static List<Event> FakeEvents(int count, double minOdd, double maxOdd)
     {
         var events = new Faker<Event>()
             .RuleFor(x => x.Id, f => f.IndexFaker)
             .RuleFor(x => x.Match, f => f.PickRandom(FakeMatches(1)))
-            .RuleFor(x => x.Odd, f => f.Random.Decimal(minOdd, maxOdd))
+            .RuleFor(x => x.Odd, f => f.Random.Double(minOdd, maxOdd))
             .RuleFor(x => x.Outcome, f => f.PickRandom(Outcomes))
             .Generate(count);
         return events;
@@ -42,15 +42,15 @@ public static class GenerateFakeBettingData
 
     public static List<Ticket> FakeTickets(int count)
     {
-        var events = FakeEvents(4, 1M, 5M);
+        var events = FakeEvents(4, 1, 5);
 
-        var odds = events.Aggregate(1M, (current, ev) => current * ev.Odd);
+        var odds = events.Aggregate(1.0, (current, ev) => current * ev.Odd);
 
         var tickets = new Faker<Ticket>()
             .RuleFor(x => x.Id, f => f.IndexFaker)
             .RuleFor(x => x.Events, events)
             .RuleFor(x => x.Odds, f => odds)
-            .RuleFor(x => x.Payin, f => f.Random.Decimal(1M, 11M))
+            .RuleFor(x => x.Payin, f => f.Random.Double(1, 11))
             .RuleFor(x => x.WinAmount, (f, t) => t.Odds * t.Payin)
             .Generate(count);
 
@@ -59,9 +59,9 @@ public static class GenerateFakeBettingData
 
     public static List<Ticket> FakeHighTickets(int count)
     {
-        var events = FakeEvents(4, 3M, 6M);
+        var events = FakeEvents(4, 3, 6);
 
-        var odds = events.Aggregate(1M, (current, ev) => current * ev.Odd);
+        var odds = events.Aggregate(1.0, (current, ev) => current * ev.Odd);
 
         events[0].Match.Tournament.Id = 2;
         events[0].Match.Tournament.Name = "TurnirTest";
@@ -70,7 +70,7 @@ public static class GenerateFakeBettingData
             .RuleFor(x => x.Id, f => f.IndexFaker)
             .RuleFor(x => x.Events, events)
             .RuleFor(x => x.Odds, odds)
-            .RuleFor(x => x.Payin, 10M)
+            .RuleFor(x => x.Payin, 10.0)
             .RuleFor(x => x.WinAmount, (f, t) => t.Odds * t.Payin)
             .Generate(count);
 

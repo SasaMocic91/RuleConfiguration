@@ -1,9 +1,12 @@
-﻿namespace RuleConfiguration.Engine.Exceptions;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace RuleConfiguration.Engine.Exceptions;
 
 /// <summary>
 ///     Represents an attempt to instantiate an operation that was not loaded.
 /// </summary>
 [Serializable]
+[ExcludeFromCodeCoverage]
 public class OperationNotFoundException : Exception
 {
     /// <summary>

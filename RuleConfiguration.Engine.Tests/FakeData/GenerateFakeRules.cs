@@ -1,7 +1,8 @@
 ﻿using RuleConfiguration.Engine.Common;
 using RuleConfiguration.Engine.Operations;
-using RuleConfiguration.Models;
-using RuleConfigurator.Application.Modifiers;
+using RuleConfiguration.Modifiers;
+using RuleConfiguration.Storage.DbModels;
+using RuleConfiguration.Storage.Models;
 
 namespace RuleConfiguration.Engine.Tests.FakeData;
 
@@ -91,7 +92,7 @@ public static class GenerateFakeRules
                     Connector = Connector.And,
                     PropertyId = "WinAmount",
                     Operation = nameof(Operation.GreaterThanOrEqualTo),
-                    Value = 1000M,
+                    Value = 1000.0,
                     Value2 = null
                 }
             },

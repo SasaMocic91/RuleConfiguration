@@ -1,12 +1,13 @@
 using RuleConfiguration.Models;
+using RuleConfiguration.Storage.Repositories.Base;
 
-namespace RuleConfigurator.Application.Modifiers;
+namespace RuleConfiguration.Modifiers;
 
-public class TaxModifier : IModifier
+public class TaxModifier : IBaseModifier<Ticket>
 {
     public Ticket Modify(Ticket ticket)
     {
-        ticket.Tax = ticket.WinAmount * 0.1M;
+        ticket.Tax = ticket.WinAmount * 0.1;
         ticket.WinAmount -= ticket.Tax;
         return ticket;
     }

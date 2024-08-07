@@ -1,6 +1,8 @@
-﻿namespace RuleConfiguration.Models;
+﻿using RuleConfiguration.Storage.DbModels;
 
-public class RuleRecord
+namespace RuleConfiguration.Storage.Models;
+
+public class RuleRecord<T>
 {
     public RuleRecord(string key, List<Modifier> modifiers, string type, string op)
     {
@@ -12,7 +14,7 @@ public class RuleRecord
 
     public string Key { get; set; }
 
-    public List<Func<Ticket, bool>> Expressions { get; set; } = new();
+    public List<Func<T, bool>> Expressions { get; set; } = new();
 
     public List<Modifier> Modifiers { get; set; } = new();
 
