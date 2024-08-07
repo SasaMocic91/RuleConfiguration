@@ -61,6 +61,9 @@ public static class RuleCreator
             case "BsonDecimal128":
                 result = decimal.Parse(val.ToString()!);
                 break;
+            case "BsonDouble":
+                result = double.Parse(val.ToString());
+                break;
             case "BsonBoolean":
                 result = bool.Parse(val.ToString());
                 break;

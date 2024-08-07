@@ -6,7 +6,7 @@ public class Event
 
     public virtual Match Match { get; set; }
 
-    public decimal Odd { get; set; }
+    public double Odd { get; set; }
 
     public string Outcome { get; set; }
     

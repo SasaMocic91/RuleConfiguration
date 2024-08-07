@@ -92,7 +92,7 @@ public static class GenerateFakeRules
                     Connector = Connector.And,
                     PropertyId = "WinAmount",
                     Operation = nameof(Operation.GreaterThanOrEqualTo),
-                    Value = 1000M,
+                    Value = 1000.0,
                     Value2 = null
                 }
             },

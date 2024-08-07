@@ -23,7 +23,7 @@ public class ModelsTests
         var ev = new Event();
         ev.Id = 1;
         ev.Match = match;
-        ev.Odd = 1.3M;
+        ev.Odd = 1.3;
         ev.Outcome = "1";
 
         Assert.That(match.Away, Is.Not.Empty);
@@ -41,11 +41,11 @@ public class ModelsTests
         var ticket = new Ticket();
         ticket.TenantId = Guid.NewGuid();
         ticket.Id = 1;
-        ticket.Bonus = 10M;
-        ticket.Tax = 10M;
-        ticket.Payin = 100M;
-        ticket.Odds = 10M;
-        ticket.WinAmount = 1000M;
+        ticket.Bonus = 10;
+        ticket.Tax = 10;
+        ticket.Payin = 100;
+        ticket.Odds = 10;
+        ticket.WinAmount = 1000;
         ticket.Events = new List<Event>() { ev };
         Assert.That(1, Is.EqualTo(ticket.Id));
         Assert.That(10M, Is.EqualTo(ticket.Tax));
