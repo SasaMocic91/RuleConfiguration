@@ -1,4 +1,5 @@
-﻿using RuleConfiguration.Engine.Interfaces;
+﻿using System.Diagnostics.CodeAnalysis;
+using RuleConfiguration.Engine.Interfaces;
 
 namespace RuleConfiguration.Engine.Exceptions;
 
@@ -6,6 +7,7 @@ namespace RuleConfiguration.Engine.Exceptions;
 ///     Represents an attempt to use an operation not currently supported by a type.
 /// </summary>
 [Serializable]
+[ExcludeFromCodeCoverage]
 public class UnsupportedOperationException : Exception
 {
     /// <summary>

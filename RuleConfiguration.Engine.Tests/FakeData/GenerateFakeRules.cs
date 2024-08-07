@@ -1,7 +1,8 @@
 ﻿using RuleConfiguration.Engine.Common;
 using RuleConfiguration.Engine.Operations;
-using RuleConfiguration.Models;
-using RuleConfigurator.Application.Modifiers;
+using RuleConfiguration.Modifiers;
+using RuleConfiguration.Storage.DbModels;
+using RuleConfiguration.Storage.Models;
 
 namespace RuleConfiguration.Engine.Tests.FakeData;
 

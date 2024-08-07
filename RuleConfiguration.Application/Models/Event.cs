@@ -9,4 +9,6 @@ public class Event
     public decimal Odd { get; set; }
 
     public string Outcome { get; set; }
+    
+    public bool IsLive { get; set; }
 }

@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
+using RuleConfiguration.Storage.Models;
 
-namespace RuleConfiguration.Models;
+namespace RuleConfiguration.Storage.DbModels;
 
 [BsonIgnoreExtraElements]
 public class Rule

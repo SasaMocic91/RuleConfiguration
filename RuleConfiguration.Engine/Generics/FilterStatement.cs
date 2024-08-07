@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using RuleConfiguration.Engine.Common;
+﻿using RuleConfiguration.Engine.Common;
 using RuleConfiguration.Engine.Exceptions;
 using RuleConfiguration.Engine.Helpers;
 using RuleConfiguration.Engine.Interfaces;
