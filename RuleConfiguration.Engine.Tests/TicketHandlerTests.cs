@@ -13,10 +13,10 @@ public class TicketHandlerTests
 {
     private readonly Guid _tenantId = Guid.NewGuid();
 
-    private IRepoWrapper SetupModifierRepo(IMongoDb db)
+    private IRepositoryWrapper SetupModifierRepo(IMongoDb db)
     {
         var memCache = new MemoryCache(new MemoryCacheOptions());
-        var modifierRepo = new RepoWrapper(memCache, db);
+        var modifierRepo = new RepositoryWrapper(memCache, db);
         return  modifierRepo;
     }
 

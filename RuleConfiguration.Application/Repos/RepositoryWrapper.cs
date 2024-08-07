@@ -5,14 +5,14 @@ using RuleConfiguration.Storage;
 
 namespace RuleConfiguration.Repos;
 
-public class RepoWrapper : IRepoWrapper
+public class RepositoryWrapper : IRepositoryWrapper
 {
     private readonly IMemoryCache _cache;
     private readonly IMongoDb _mongoDb;
     private ITicketRulesCache _ticketRules;
     private ITicketModifiers _ticketModifiers;
 
-    public RepoWrapper(IMemoryCache cache, IMongoDb mongoDb)
+    public RepositoryWrapper(IMemoryCache cache, IMongoDb mongoDb)
     {
         _cache = cache;
         _mongoDb = mongoDb;

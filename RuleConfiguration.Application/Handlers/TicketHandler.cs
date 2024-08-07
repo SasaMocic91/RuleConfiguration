@@ -10,9 +10,9 @@ public interface ITicketHandler
 
 public class TicketHandler : ITicketHandler
 {
-    private readonly IRepoWrapper _repository;
+    private readonly IRepositoryWrapper _repository;
 
-    public TicketHandler(IRepoWrapper repository)
+    public TicketHandler(IRepositoryWrapper repository)
     {
         _repository = repository;
     }

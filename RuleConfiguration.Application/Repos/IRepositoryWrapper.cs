@@ -3,7 +3,7 @@ using RuleConfiguration.RuleCaches;
 
 namespace RuleConfiguration.Repos;
 
-public interface IRepoWrapper
+public interface IRepositoryWrapper
 {
     ITicketRulesCache TicketRules { get; }
     ITicketModifiers TicketModifiers { get; }

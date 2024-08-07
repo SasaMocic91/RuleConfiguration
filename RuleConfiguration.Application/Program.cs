@@ -14,7 +14,7 @@ builder.Services.Configure<DbSettings>(builder.Configuration.GetSection("RuleCon
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IMongoDb, MongoDb>();
-builder.Services.AddScoped<IRepoWrapper, RepoWrapper>();
+builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 builder.Services.AddTransient<IRuleHandler, RuleHandler>();
 builder.Services.AddTransient<ITicketHandler, TicketHandler>();
 
