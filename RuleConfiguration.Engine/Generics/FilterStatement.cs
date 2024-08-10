@@ -1,5 +1,4 @@
-﻿using RuleConfiguration.Engine.Common;
-using RuleConfiguration.Engine.Exceptions;
+﻿using RuleConfiguration.Engine.Exceptions;
 using RuleConfiguration.Engine.Helpers;
 using RuleConfiguration.Engine.Interfaces;
 
@@ -19,11 +18,9 @@ public class FilterStatement<TPropertyType> : IFilterStatement
     /// <param name="value"></param>
     /// <param name="value2"></param>
     /// <param name="connector"></param>
-    public FilterStatement(string propertyId, IOperation operation, TPropertyType value, TPropertyType value2,
-        Connector connector)
+    public FilterStatement(string propertyId, IOperation operation, TPropertyType value, TPropertyType value2)
     {
         PropertyId = propertyId;
-        Connector = connector;
         Operation = operation;
         SetValues(value, value2);
         Validate();
@@ -35,12 +32,7 @@ public class FilterStatement<TPropertyType> : IFilterStatement
     public FilterStatement()
     {
     }
-
-    /// <summary>
-    ///     Establishes how this filter statement will connect to the next one.
-    /// </summary>
-    public Connector Connector { get; set; }
-
+    
     /// <summary>
     ///     Property identifier conventionalized by for the Expression Builder.
     /// </summary>
@@ -106,7 +98,7 @@ public class FilterStatement<TPropertyType> : IFilterStatement
     {
         if (typeof(TPropertyType) == typeof(object))
         {
-             // Ignore type object, operations are not supported.
+            // Ignore type object, operations are not supported.
             return;
         }
 

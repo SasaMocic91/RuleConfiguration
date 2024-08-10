@@ -12,48 +12,17 @@ public class FilterBuilder
     {
         var param = Expression.Parameter(typeof(T), "x");
         Expression expression = null;
-        var connector = Connector.And;
-        foreach (var statementGroup in filter.Statements)
-        {
-            var statementGroupConnector = Connector.And;
-            var partialExpr = GetPartialExpression(param, ref statementGroupConnector, statementGroup);
 
-            expression = expression == null ? partialExpr : CombineExpressions(expression, partialExpr, connector);
-            connector = statementGroupConnector;
-        }
-
-        expression = expression ?? Expression.Constant(true);
+        expression = IsList(filter.Statement)
+            ? ProcessListStatement(param, filter.Statement)
+            : GetExpression(param, filter.Statement);
 
         return Expression.Lambda<Func<T, bool>>(expression, param);
-    }
-
-    private Expression GetPartialExpression(ParameterExpression param, ref Connector connector,
-        IEnumerable<IFilterStatement> statementGroup)
-    {
-        Expression expression = null;
-        foreach (var statement in statementGroup)
-        {
-            Expression expr = null;
-            if (IsList(statement))
-                expr = ProcessListStatement(param, statement);
-            else
-                expr = GetExpression(param, statement);
-
-            expression = expression == null ? expr : CombineExpressions(expression, expr, connector);
-            connector = statement.Connector;
-        }
-
-        return expression;
     }
 
     private bool IsList(IFilterStatement statement)
     {
         return statement.PropertyId.Contains("[") && statement.PropertyId.Contains("]");
-    }
-
-    private Expression CombineExpressions(Expression expr1, Expression expr2, Connector connector)
-    {
-        return connector == Connector.And ? Expression.AndAlso(expr1, expr2) : Expression.OrElse(expr1, expr2);
     }
 
     private Expression ProcessListStatement(ParameterExpression param, IFilterStatement statement)
