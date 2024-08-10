@@ -5,9 +5,8 @@ using RuleConfiguration.Storage.Models;
 
 namespace RuleConfiguration.Storage;
 
-public interface IMongoDb
+public interface IRuleRepository
 {
-    IMongoCollection<Rule> GetCollection(IMongoDatabase db);
     Task<List<Rule>> GetRulesList(Guid tenantId);
 
     Task<Rule?> GetRule(Guid tenantId, string name);
@@ -19,24 +18,15 @@ public interface IMongoDb
     Task RemoveRule(Guid tenantId, string name);
 }
 
-public class MongoDb : IMongoDb
+public class RuleRepository : IRuleRepository
 {
     private readonly IMongoCollection<Rule> _ruleCollection;
 
-    public MongoDb(IOptions<DbSettings> dbSettings)
+    public RuleRepository(IOptions<DbSettings> dbSettings, IMongoClient mongoClient)
     {
-        var mongoClient = new MongoClient(dbSettings.Value.ConnectionString);
-
         var mongoDb = mongoClient.GetDatabase(dbSettings.Value.DatabaseName);
 
-        _ruleCollection = GetCollection(mongoDb);
-    }
-
-    public IMongoCollection<Rule> GetCollection(IMongoDatabase database)
-    {
-        var collection = database.GetCollection<Rule>("Rules");
-
-        return collection;
+        _ruleCollection = mongoDb.GetCollection<Rule>(dbSettings.Value.RulesCollectionName);
     }
 
 

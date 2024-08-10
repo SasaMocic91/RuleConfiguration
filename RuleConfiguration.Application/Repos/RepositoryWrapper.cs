@@ -8,14 +8,14 @@ namespace RuleConfiguration.Repos;
 public class RepositoryWrapper : IRepositoryWrapper
 {
     private readonly IMemoryCache _cache;
-    private readonly IMongoDb _mongoDb;
+    private readonly IRuleRepository _ruleRepository;
     private ITicketRulesCache _ticketRules;
     private ITicketModifiers _ticketModifiers;
 
-    public RepositoryWrapper(IMemoryCache cache, IMongoDb mongoDb)
+    public RepositoryWrapper(IMemoryCache cache, IRuleRepository ruleRepository)
     {
         _cache = cache;
-        _mongoDb = mongoDb;
+        _ruleRepository = ruleRepository;
     }
 
     public ITicketRulesCache TicketRules
@@ -24,7 +24,7 @@ public class RepositoryWrapper : IRepositoryWrapper
         {
             if (_ticketRules == null)
             {
-                _ticketRules = new TicketRulesCache(_cache, _mongoDb);
+                _ticketRules = new TicketRulesCache(_cache, _ruleRepository);
             }
 
             return _ticketRules;

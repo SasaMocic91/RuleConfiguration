@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using MongoDB.Driver;
 using RuleConfiguration.Handlers;
 using RuleConfiguration.Models;
 using RuleConfiguration.Repos;
@@ -9,16 +10,24 @@ using RuleConfiguration.Storage.Models;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<DbSettings>(builder.Configuration.GetSection("RuleConfiguration.Db"));
 
+
+
+builder.Services.AddSingleton<IMongoClient>(_ =>
+{
+    var connectionString = builder.Configuration.GetValue<string>("RuleConfiguration.Db.ConnectionString");
+    return new MongoClient(connectionString);
+});
+
+builder.Services.AddSingleton<IRuleRepository, RuleRepository>();
+builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+builder.Services.AddTransient<IRuleHandler, RuleHandler>();
+builder.Services.AddTransient<ITicketHandler, TicketHandler>();
+builder.Services.AddMemoryCache();
+
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<IMongoDb, MongoDb>();
-builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
-builder.Services.AddTransient<IRuleHandler, RuleHandler>();
-builder.Services.AddTransient<ITicketHandler, TicketHandler>();
-
-builder.Services.AddMemoryCache();
 
 var app = builder.Build();
 

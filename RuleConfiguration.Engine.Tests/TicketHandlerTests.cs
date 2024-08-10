@@ -13,25 +13,25 @@ public class TicketHandlerTests
 {
     private readonly Guid _tenantId = Guid.NewGuid();
 
-    private IRepositoryWrapper SetupModifierRepo(IMongoDb db)
+    private IRepositoryWrapper SetupModifierRepo(IRuleRepository db)
     {
         var memCache = new MemoryCache(new MemoryCacheOptions());
         var modifierRepo = new RepositoryWrapper(memCache, db);
-        return  modifierRepo;
+        return modifierRepo;
     }
 
     [Test]
     public async Task TicketHandler_CheckTicket()
     {
-        using var runner = MongoDbRunner.Start();
-        var mongoDb = MongoHelper.GetDb(runner);
+        using var mongoRunner = MongoDbRunner.Start();
+        var mongoDb = MongoHelper.GetDb(mongoRunner);
 
         var modifierRepo = SetupModifierRepo(mongoDb);
         var ticketHandler = new TicketHandler(modifierRepo);
 
         var ticket = FakeData.GenerateFakeBettingData.FakeHighTickets(1).First();
         ticket.TenantId = _tenantId;
-        
+
         await ticketHandler.CheckTicket(ticket);
     }
 }

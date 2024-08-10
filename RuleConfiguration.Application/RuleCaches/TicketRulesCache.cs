@@ -10,7 +10,7 @@ public interface ITicketRulesCache : IBaseRulesCache<Ticket>
     
 }
 
-public class TicketRulesCache(IMemoryCache memoryCache, IMongoDb mongoDb) : BaseRulesCache<Ticket>(memoryCache, mongoDb), ITicketRulesCache
+public class TicketRulesCache(IMemoryCache memoryCache, IRuleRepository ruleRepository) : BaseRulesCache<Ticket>(memoryCache, ruleRepository), ITicketRulesCache
 {
     
 }

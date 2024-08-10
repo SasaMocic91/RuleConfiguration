@@ -1,7 +1,6 @@
 using System.Text.Json;
 using Mongo2Go;
 using NUnit.Framework;
-using RuleConfiguration.Engine.Common;
 using RuleConfiguration.Engine.Operations;
 using RuleConfiguration.Engine.Tests.Helpers;
 using RuleConfiguration.Handlers;
@@ -19,8 +18,8 @@ public class RuleHandlersTest
     [Test]
     public async Task RuleHandler_Create_Success()
     {
-        using var runner = MongoDbRunner.Start();
-        var mongoDb = MongoHelper.GetDb(runner);
+        using var mongoRunner = MongoDbRunner.Start();
+        var mongoDb = MongoHelper.GetDb(mongoRunner);
 
         var handler = new RuleHandler(mongoDb);
 
@@ -58,8 +57,8 @@ public class RuleHandlersTest
     [Test]
     public async Task RuleHandler_GetRule_Success()
     {
-        using var runner = MongoDbRunner.Start();
-        var mongoDb = MongoHelper.GetDb(runner);
+        using var mongoRunner = MongoDbRunner.Start();
+        var mongoDb = MongoHelper.GetDb(mongoRunner);
 
         var handler = new RuleHandler(mongoDb);
 
@@ -99,8 +98,8 @@ public class RuleHandlersTest
     [Test]
     public async Task RuleHandler_GetRules_Success()
     {
-        using var runner = MongoDbRunner.Start();
-        var mongoDb = MongoHelper.GetDb(runner);
+        using var mongoRunner = MongoDbRunner.Start();
+        var mongoDb = MongoHelper.GetDb(mongoRunner);
 
         var handler = new RuleHandler(mongoDb);
 
@@ -141,8 +140,8 @@ public class RuleHandlersTest
     [Test]
     public async Task RuleHandler_UpdateRule_Success()
     {
-        using var runner = MongoDbRunner.Start();
-        var mongoDb = MongoHelper.GetDb(runner);
+        using var mongoRunner = MongoDbRunner.Start();
+        var mongoDb = MongoHelper.GetDb(mongoRunner);
 
         var handler = new RuleHandler(mongoDb);
 
@@ -207,6 +206,6 @@ public class RuleHandlersTest
         var updatedRule = await handler.GetRule(request.TenantId, request.Name);
 
 
-        Assert.That("TaxRuleUpdated",Is.EqualTo(updatedRule.Name));
+        Assert.That("TaxRuleUpdated", Is.EqualTo(updatedRule.Name));
     }
 }

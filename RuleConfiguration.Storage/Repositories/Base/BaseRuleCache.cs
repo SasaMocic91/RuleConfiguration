@@ -3,12 +3,12 @@ using RuleConfiguration.Storage.Models;
 
 namespace RuleConfiguration.Storage.Repositories.Base;
 
-public class BaseRulesCache<T>(IMemoryCache memoryCache, IMongoDb mongoDb) : IBaseRulesCache<T>
+public class BaseRulesCache<T>(IMemoryCache memoryCache, IRuleRepository ruleRepository) : IBaseRulesCache<T>
     where T : class
 {
     public async Task StoreConfiguration(Guid tenantId)
     {
-        var rulesDb = await mongoDb.GetRulesList(tenantId);
+        var rulesDb = await ruleRepository.GetRulesList(tenantId);
         var rules = rulesDb.ToDictionary(x => x.Name);
 
         if (rules.Count == 0) return;
@@ -24,7 +24,7 @@ public class BaseRulesCache<T>(IMemoryCache memoryCache, IMongoDb mongoDb) : IBa
         // Get From Cache
         memoryCache.TryGetValue(tenantId, out Dictionary<string, RuleRecord<T>>? cacheValue);
         if (cacheValue is not null) return cacheValue;
-        var rulesDb = await mongoDb.GetRulesList(tenantId);
+        var rulesDb = await ruleRepository.GetRulesList(tenantId);
         var rules = rulesDb.ToDictionary(x => x.Name);
 
         if (rules.Count == 0) return null;

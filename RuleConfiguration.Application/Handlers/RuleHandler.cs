@@ -18,9 +18,9 @@ public interface IRuleHandler
 
 public class RuleHandler : IRuleHandler
 {
-    private readonly IMongoDb _rulesDb;
+    private readonly IRuleRepository _rulesDb;
 
-    public RuleHandler(IMongoDb rulesDb)
+    public RuleHandler(IRuleRepository rulesDb)
     {
         _rulesDb = rulesDb;
     }
