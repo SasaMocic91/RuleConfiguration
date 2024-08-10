@@ -1,17 +1,10 @@
-﻿using RuleConfiguration.Engine.Common;
-
-namespace RuleConfiguration.Engine.Interfaces;
+﻿namespace RuleConfiguration.Engine.Interfaces;
 
 /// <summary>
 ///     Defines how a property should be filtered.
 /// </summary>
 public interface IFilterStatement
 {
-    /// <summary>
-    ///     Establishes how this filter statement will connect to the next one.
-    /// </summary>
-    Connector Connector { get; set; }
-
     /// <summary>
     ///     Property identifier conventionalized by for the Expression Builder.
     /// </summary>

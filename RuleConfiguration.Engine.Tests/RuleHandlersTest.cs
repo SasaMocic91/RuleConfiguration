@@ -32,7 +32,6 @@ public class RuleHandlersTest
             {
                 new()
                 {
-                    Connector = Connector.And,
                     PropertyId = "WinAmount",
                     Operation = nameof(Operation.GreaterThanOrEqualTo),
                     Value = JsonSerializer.SerializeToElement(1000M),
@@ -72,7 +71,6 @@ public class RuleHandlersTest
             {
                 new()
                 {
-                    Connector = Connector.And,
                     PropertyId = "WinAmount",
                     Operation = nameof(Operation.GreaterThanOrEqualTo),
                     Value = JsonSerializer.SerializeToElement(1000M),
@@ -114,7 +112,6 @@ public class RuleHandlersTest
             {
                 new()
                 {
-                    Connector = Connector.And,
                     PropertyId = "WinAmount",
                     Operation = nameof(Operation.GreaterThanOrEqualTo),
                     Value = JsonSerializer.SerializeToElement(1000M),
@@ -157,7 +154,6 @@ public class RuleHandlersTest
             {
                 new()
                 {
-                    Connector = Connector.And,
                     PropertyId = "WinAmount",
                     Operation = nameof(Operation.GreaterThanOrEqualTo),
                     Value = JsonSerializer.SerializeToElement(1000M),
@@ -187,7 +183,6 @@ public class RuleHandlersTest
             {
                 new()
                 {
-                    Connector = Connector.And,
                     PropertyId = "WinAmount",
                     Operation = nameof(Operation.GreaterThanOrEqualTo),
                     Value = JsonSerializer.SerializeToElement(1000M),
