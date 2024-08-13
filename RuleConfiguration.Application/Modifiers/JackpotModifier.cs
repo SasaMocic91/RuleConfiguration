@@ -1,9 +1,9 @@
 using RuleConfiguration.Models;
-using RuleConfiguration.Modifiers;
+using RuleConfiguration.Storage.Repositories.Base;
 
-namespace RuleConfigurator.Application.Modifiers;
+namespace RuleConfiguration.Modifiers;
 
-public class JackpotModifier : IModifier
+public class JackpotModifier : IBaseModifier<Ticket>
 {
     public Ticket Modify(Ticket ticket)
     {

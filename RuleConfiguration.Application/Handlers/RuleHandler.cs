@@ -1,6 +1,7 @@
-using RuleConfiguration.Models;
 using RuleConfiguration.Requests;
 using RuleConfiguration.Storage;
+using RuleConfiguration.Storage.DbModels;
+using RuleConfiguration.Storage.Models;
 
 namespace RuleConfiguration.Handlers;
 
@@ -33,7 +34,6 @@ public class RuleHandler : IRuleHandler
             Name = request.Name,
             Conditions = request.Conditions.ConvertAll(x => new FilterStatementProperties
             {
-                Connector = x.Connector,
                 PropertyId = x.PropertyId,
                 Operation = x.Operation,
                 Value = x.Value.ToBsonValue(),
@@ -68,7 +68,6 @@ public class RuleHandler : IRuleHandler
             Name = request.Name,
             Conditions = request.Conditions.ConvertAll(x => new FilterStatementProperties
             {
-                Connector = x.Connector,
                 PropertyId = x.PropertyId,
                 Operation = x.Operation,
                 Value = x.Value.ToBsonValue(),

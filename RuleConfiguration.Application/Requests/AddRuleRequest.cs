@@ -1,6 +1,5 @@
 ﻿using System.Text.Json;
-using RuleConfiguration.Engine.Common;
-using RuleConfiguration.Models;
+using RuleConfiguration.Storage.DbModels;
 
 namespace RuleConfiguration.Requests;
 
@@ -21,8 +20,6 @@ public class AddRuleRequest
 
 public class RuleFilters
 {
-    public Connector Connector { get; set; }
-
     /// <summary>
     ///     Property identifier conventionalized by for the Expression Builder.
     /// </summary>

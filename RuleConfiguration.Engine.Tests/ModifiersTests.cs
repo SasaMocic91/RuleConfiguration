@@ -4,8 +4,8 @@ using NUnit.Framework;
 using RuleConfiguration.Engine.Tests.FakeData;
 using RuleConfiguration.Engine.Tests.Helpers;
 using RuleConfiguration.Models;
-using RuleConfiguration.Modifiers;
-using RuleConfiguration.Storage;
+using RuleConfiguration.Modifiers.ModelModifiers;
+using RuleConfiguration.RuleCaches;
 
 namespace RuleConfiguration.Engine.Tests;
 
@@ -20,11 +20,11 @@ public class ModifierTests
         using var runner = MongoDbRunner.Start();
         var memCache = new MemoryCache(new MemoryCacheOptions());
         var mongoDb = MongoHelper.GetDb(runner);
-        var rulesCache = new RulesCache(memCache, mongoDb);
+        var rulesCache = new TicketRulesCache(memCache, mongoDb);
 
         var rule = GenerateFakeRules.GenerateTaxRule(_tenantId);
-        var modifierRepo = new ModifierRepo(rulesCache);
-
+        var modifierRepo = new TicketModifiers(rulesCache);
+   
         await mongoDb.CreateRule(rule);
         await rulesCache.StoreConfiguration(rule.TenantId);
 
@@ -44,9 +44,9 @@ public class ModifierTests
         var memCache = new MemoryCache(new MemoryCacheOptions());
 
         var mongoDb = MongoHelper.GetDb(runner);
-        var rulesCache = new RulesCache(memCache, mongoDb);
+        var rulesCache = new TicketRulesCache(memCache, mongoDb);
 
-        var modifierRepo = new ModifierRepo(rulesCache);
+        var modifierRepo = new TicketModifiers(rulesCache);
 
         var rule = GenerateFakeRules.GenerateJackpotRule(_tenantId);
 
@@ -69,9 +69,9 @@ public class ModifierTests
         var memCache = new MemoryCache(new MemoryCacheOptions());
 
         var mongoDb = MongoHelper.GetDb(runner);
-        var rulesCache = new RulesCache(memCache, mongoDb);
+        var rulesCache = new TicketRulesCache(memCache, mongoDb);
 
-        var modifierRepo = new ModifierRepo(rulesCache);
+        var modifierRepo = new TicketModifiers(rulesCache);
 
         var rule = GenerateFakeRules.GenerateBonusRule(_tenantId);
 
@@ -95,9 +95,9 @@ public class ModifierTests
         var memCache = new MemoryCache(new MemoryCacheOptions());
 
         var mongoDb = MongoHelper.GetDb(runner);
-        var rulesCache = new RulesCache(memCache, mongoDb);
+        var rulesCache = new TicketRulesCache(memCache, mongoDb);
 
-        var modifierRepo = new ModifierRepo(rulesCache);
+        var modifierRepo = new TicketModifiers(rulesCache);
 
         var bonusRule = GenerateFakeRules.GenerateBonusRule(_tenantId);
 

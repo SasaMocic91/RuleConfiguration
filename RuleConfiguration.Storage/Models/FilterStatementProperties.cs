@@ -1,9 +1,8 @@
-
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using RuleConfiguration.Engine.Common;
 
-namespace RuleConfiguration.Models;
+namespace RuleConfiguration.Storage.Models;
 
 [BsonIgnoreExtraElements]
 public class FilterStatementProperties
