@@ -1,22 +1,6 @@
 ﻿namespace RuleConfiguration.Engine.Common;
 
 /// <summary>
-///     Defines how the filter statements will be connected to each other.
-/// </summary>
-public enum Connector
-{
-    /// <summary>
-    ///     Determines that both the current AND the next filter statement needs to be satisfied.
-    /// </summary>
-    And,
-
-    /// <summary>
-    ///     Determines that the current OR the next filter statement needs to be satisfied.
-    /// </summary>
-    Or
-}
-
-/// <summary>
 ///     Groups types into simple groups and map the supported operations to each group.
 /// </summary>
 [Flags]

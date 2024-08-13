@@ -1,4 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
+using RuleConfiguration.Engine.Helpers;
+using RuleConfiguration.Engine.Interfaces;
 using RuleConfiguration.Handlers;
 using RuleConfiguration.Models;
 using RuleConfiguration.Repos;
@@ -15,9 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IMongoDb, MongoDb>();
 builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
-builder.Services.AddTransient<IRulesCache,RulesCache>();
 builder.Services.AddSingleton<IOperationHelper, OperationHelper>();
-builder.Services.AddTransient<IModifierRepo, ModifierRepo>();
 builder.Services.AddTransient<IRuleHandler, RuleHandler>();
 builder.Services.AddTransient<ITicketHandler, TicketHandler>();
 builder.Services.AddTransient<ILookupHandler, LookupHandler>();
