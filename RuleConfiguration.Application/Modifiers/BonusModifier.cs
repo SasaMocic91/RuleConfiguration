@@ -7,7 +7,7 @@ public class BonusModifier : IBaseModifier<Ticket>
 {
     public Ticket Modify(Ticket ticket)
     {
-        const decimal bonus = 0.2M;
+        const double bonus = 0.2;
         ticket.Bonus = ticket.WinAmount * bonus;
         ticket.WinAmount += bonus;
         return ticket;

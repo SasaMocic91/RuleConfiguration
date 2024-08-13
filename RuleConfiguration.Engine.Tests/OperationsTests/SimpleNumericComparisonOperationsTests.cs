@@ -17,11 +17,11 @@ namespace RuleConfiguration.Engine.Tests.OperationsTests
             TestData = GenerateFakeBettingData.FakeTickets(4).ToList();
         }
 
-        [TestCase(ExpressionType.GreaterThan, "GreaterThan", 10, TestName = "'GreaterThan' operation - Get expression")]
-        [TestCase(ExpressionType.GreaterThanOrEqual, "GreaterThanOrEqualTo", 10, TestName = "'GreaterThanOrEqualTo' operation - Get expression")]
-        [TestCase(ExpressionType.LessThan, "LessThan", 4000, TestName = "'LessThan' operation - Get expression")]
-        [TestCase(ExpressionType.LessThanOrEqual, "LessThanOrEqualTo", 4000, TestName = "'LessThanOrEqualTo' operation - Get expression")]
-        public void GetExpressionTest(ExpressionType method, string methodName, decimal value)
+        [TestCase(ExpressionType.GreaterThan, "GreaterThan", 10.0, TestName = "'GreaterThan' operation - Get expression")]
+        [TestCase(ExpressionType.GreaterThanOrEqual, "GreaterThanOrEqualTo", 10.0, TestName = "'GreaterThanOrEqualTo' operation - Get expression")]
+        [TestCase(ExpressionType.LessThan, "LessThan", 4000.0, TestName = "'LessThan' operation - Get expression")]
+        [TestCase(ExpressionType.LessThanOrEqual, "LessThanOrEqualTo", 4000.0, TestName = "'LessThanOrEqualTo' operation - Get expression")]
+        public void GetExpressionTest(ExpressionType method, string methodName, double value)
         {
             var propertyName = "WinAmount";
             var type = typeof(IFilter).Assembly.Types()
@@ -41,22 +41,22 @@ namespace RuleConfiguration.Engine.Tests.OperationsTests
             Assert.That(tickets, Is.EquivalentTo(solution));
         }
 
-        public Func<Ticket, bool> GreaterThan(decimal value)
+        public Func<Ticket, bool> GreaterThan(double value)
         {
             return x => x.WinAmount > value;
         }
 
-        public Func<Ticket, bool> GreaterThanOrEqual(decimal value)
+        public Func<Ticket, bool> GreaterThanOrEqual(double value)
         {
             return x => x.WinAmount >= value;
         }
 
-        public Func<Ticket, bool> LessThan(decimal value)
+        public Func<Ticket, bool> LessThan(double value)
         {
             return x => x.WinAmount < value;
         }
 
-        public Func<Ticket, bool> LessThanOrEqual(decimal value)
+        public Func<Ticket, bool> LessThanOrEqual(double value)
         {
             return x => x.WinAmount <= value;
         }
