@@ -1,4 +1,5 @@
 using RuleConfiguration.Models;
+using RuleConfiguration.Modifiers;
 
 namespace RuleConfigurator.Application.Modifiers;
 

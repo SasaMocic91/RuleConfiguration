@@ -1,11 +1,16 @@
 ﻿using System.Reflection;
+using RuleConfiguration.DTOs;
 using RuleConfiguration.Engine.Interfaces;
 using RuleConfiguration.Engine.Resources;
-using RuleConfiguration.Models;
 
 namespace RuleConfiguration.Handlers;
 
-public class LookupHandler
+public interface ILookupHandler
+{
+    public Task<Dictionary<string, List<OperationsDto>>> GetOperations(string className);
+}
+
+public class LookupHandler : ILookupHandler
 {
     private readonly IOperationHelper _operationHelper;
 
@@ -14,25 +19,28 @@ public class LookupHandler
         _operationHelper = operationHelper;
     }
 
-    public Task<Dictionary<string, HashSet<IOperation>>> GetOperations(string className)
+    public Task<Dictionary<string, List<OperationsDto>>> GetOperations(string className)
     {
         try
         {
             var type = FindType(className.ToLowerInvariant());
             var props = new PropertyCollection(type);
-            var k = props.ToList();
 
-            var dict = new Dictionary<string, HashSet<IOperation>>();
-            foreach (var t in k)
+            var dict = new Dictionary<string, List<OperationsDto>>();
+            foreach (var t in props.ToList())
             {
                 var ops = _operationHelper.SupportedOperations(t.MemberType);
-
-                dict.Add(t.Id, ops);
+                var operationsPerProperty = ops.Select(x => new OperationsDto
+                {
+                    Name = x.Name,
+                    NumberOfValues = x.NumberOfValues
+                }).ToList();
+                dict.Add(t.Id, operationsPerProperty);
             }
-
+            
             return Task.FromResult(dict);
         }
-        catch ( Exception e)
+        catch (Exception e)
         {
             Console.WriteLine(e);
             throw;

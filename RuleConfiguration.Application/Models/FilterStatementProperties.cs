@@ -8,8 +8,6 @@ namespace RuleConfiguration.Models;
 [BsonIgnoreExtraElements]
 public class FilterStatementProperties
 {
-    public Connector Connector { get; set; }
-
     public string PropertyId { get; set; }
 
     public string Operation { get; set; }

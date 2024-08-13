@@ -20,6 +20,7 @@ builder.Services.AddSingleton<IOperationHelper, OperationHelper>();
 builder.Services.AddTransient<IModifierRepo, ModifierRepo>();
 builder.Services.AddTransient<IRuleHandler, RuleHandler>();
 builder.Services.AddTransient<ITicketHandler, TicketHandler>();
+builder.Services.AddTransient<ILookupHandler, LookupHandler>();
 
 builder.Services.AddMemoryCache();
 
@@ -64,7 +65,12 @@ app.MapPost("/tickets", async (ITicketHandler ticketHandler, Ticket ticket) =>
     })
     .WithName("CheckTicket");
 
-
+app.MapGet("/lookup/{className}", async (ILookupHandler handler, string className) =>
+    {
+        var result = await handler.GetOperations(className);
+        return result is not null ? Results.Ok(result) : Results.BadRequest();
+    })
+    .WithName("Lookup");
 app.Run();
 
 

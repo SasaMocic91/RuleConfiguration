@@ -1,6 +1,6 @@
 using RuleConfiguration.Models;
 
-namespace RuleConfigurator.Application.Modifiers;
+namespace RuleConfiguration.Modifiers;
 
 public interface IModifier
 {
