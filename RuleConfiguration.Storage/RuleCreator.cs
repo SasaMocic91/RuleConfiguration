@@ -21,11 +21,9 @@ public static class RuleCreator
 
                 var value1 = Convert(condition.Value);
                 var value2 = Convert(condition.Value2);
-                    
-                filter.StartGroup();
+
                 filter.By(condition.PropertyId, Operation.ByName(condition.Operation),
-                    value1, value2,
-                    condition.Connector);
+                    value1, value2);
 
                 var filterBuilder = new FilterBuilder();
                 var exp = filterBuilder.GetExpression<T>(filter);

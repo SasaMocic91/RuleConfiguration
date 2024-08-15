@@ -19,7 +19,6 @@ public static class GenerateFakeRules
             {
                 new()
                 {
-                    Connector = Connector.And,
                     PropertyId = "Events[Match].Tournament.Name",
                     Operation = nameof(Operation.EndsWith),
                     Value = "Test",
@@ -27,7 +26,6 @@ public static class GenerateFakeRules
                 },
                 new()
                 {
-                    Connector = Connector.And,
                     PropertyId = "Events.Count",
                     Operation = nameof(Operation.Between),
                     Value = 3,
@@ -59,7 +57,6 @@ public static class GenerateFakeRules
             {
                 new()
                 {
-                    Connector = Connector.And,
                     PropertyId = "Events[Match].Tournament.Name",
                     Operation = nameof(Operation.EndsWith),
                     Value = "Test",
@@ -89,7 +86,6 @@ public static class GenerateFakeRules
             {
                 new()
                 {
-                    Connector = Connector.And,
                     PropertyId = "WinAmount",
                     Operation = nameof(Operation.GreaterThanOrEqualTo),
                     Value = 1000.0,

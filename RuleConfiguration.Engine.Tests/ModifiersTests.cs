@@ -139,7 +139,6 @@ public class ModifierTests
         bonusRule2.Name = "BonusRule2";
         bonusRule2.Conditions.Add(new FilterStatementProperties
         {
-            Connector = Connector.And,
             PropertyId = "Payin",
             Operation = nameof(Operation.GreaterThanOrEqualTo),
             Value = 5.0,
@@ -150,7 +149,7 @@ public class ModifierTests
         await mongoDb.CreateRule(bonusRule2);
         await rulesCache.StoreConfiguration(_tenantId);
 
-        var k =await rulesCache.GetTenantConfig(_tenantId);
+        _ = await rulesCache.GetTenantConfig(_tenantId);
 
         var ticket = GenerateFakeBettingData.FakeHighTickets(1).Single();
         ticket.TenantId = _tenantId;
