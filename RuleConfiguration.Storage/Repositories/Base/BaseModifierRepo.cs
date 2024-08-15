@@ -1,4 +1,5 @@
 ﻿using RuleConfiguration.Storage.DbModels;
+using RuleConfiguration.Storage.Models;
 
 namespace RuleConfiguration.Storage.Repositories.Base;
 
@@ -14,21 +15,28 @@ public class BaseModifierRepo<T>(IBaseRulesCache<T> baseRulesCache) : IBaseModif
 
         return data;
     }
-    
+
     private async Task<List<IBaseModifier<T>>> GetModifiers(T data)
     {
         var modifiers = await FilterModifiers(data, AllModifiers);
         return modifiers.Distinct().ToList();
     }
-    
+
     private async Task<List<IBaseModifier<T>>> FilterModifiers(T data, List<IBaseModifier<T>> modifiers)
     {
         var config = await baseRulesCache.GetTenantConfig(GetTenantId(data));
-        if (config == null) return new List<IBaseModifier<T>>();
+        if (config == null) return [];
         var mods = new List<IBaseModifier<T>>();
+        var appliedRuleTypes = new HashSet<string>();
         foreach (var rule in config.Values)
         {
-            var conditions = rule.Expressions.Select(x => x.Invoke(data)).ToList();
+            if (CheckIfSimilarRuleHasBeenApplied(appliedRuleTypes, rule.Type))
+            {
+                continue;
+            }
+
+            var conditions = rule.Expressions
+                .Select(x => x.Invoke(data)).ToList();
             switch (rule.Operator.ToLowerInvariant())
             {
                 case "and" when conditions.All(x => x):
@@ -50,8 +58,13 @@ public class BaseModifierRepo<T>(IBaseRulesCache<T> baseRulesCache) : IBaseModif
 
         return result;
     }
-    
-    private Guid GetTenantId<T>(T data)
+
+    private static bool CheckIfSimilarRuleHasBeenApplied(HashSet<string> appliedRules, string type)
+    {
+        return !appliedRules.Add(type);
+    }
+
+    private static Guid GetTenantId(T data)
     {
         var type = data.GetType();
 

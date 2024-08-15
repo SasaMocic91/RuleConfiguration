@@ -6,15 +6,15 @@ public class Ticket
 
     public List<Event> Events { get; set; }
 
-    public decimal Odds { get; set; }
+    public double Odds { get; set; }
 
-    public decimal Payin { get; set; }
+    public double Payin { get; set; }
 
-    public decimal WinAmount { get; set; }
+    public double WinAmount { get; set; }
 
-    public decimal Bonus { get; set; }
+    public double Bonus { get; set; }
 
-    public decimal Tax { get; set; }
+    public double Tax { get; set; }
 
     public Guid TenantId { get; set; }
 }

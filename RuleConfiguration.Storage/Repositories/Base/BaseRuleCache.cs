@@ -9,8 +9,9 @@ public class BaseRulesCache<T>(IMemoryCache memoryCache, IMongoDb mongoDb) : IBa
     public async Task StoreConfiguration(Guid tenantId)
     {
         var rulesDb = await mongoDb.GetRulesList(tenantId);
-        var rules = rulesDb.ToDictionary(x => x.Name);
-
+        var ordered = rulesDb.OrderByDescending(x => x.Conditions.Count).ToList();
+        var rules = ordered.ToDictionary(x => x.Name);
+        
         if (rules.Count == 0) return;
 
         var records = RuleCreator.CreateRuleRecords<T>(rules);
@@ -25,7 +26,8 @@ public class BaseRulesCache<T>(IMemoryCache memoryCache, IMongoDb mongoDb) : IBa
         memoryCache.TryGetValue(tenantId, out Dictionary<string, RuleRecord<T>>? cacheValue);
         if (cacheValue is not null) return cacheValue;
         var rulesDb = await mongoDb.GetRulesList(tenantId);
-        var rules = rulesDb.ToDictionary(x => x.Name);
+        var ordered = rulesDb.OrderByDescending(x => x.Conditions.Count).ToList();
+        var rules = ordered.ToDictionary(x => x.Name);
 
         if (rules.Count == 0) return null;
 

@@ -18,8 +18,8 @@ public class BetweenTests
         var operation = new Between();
         var param = Expression.Parameter(typeof(Ticket), "x");
         var member = Expression.Property(param, propertyName);
-        var constant1 = Expression.Constant(1m);
-        var constant2 = Expression.Constant(20M);
+        var constant1 = Expression.Constant(1.0);
+        var constant2 = Expression.Constant(20.0);
 
         BinaryExpression expression = (BinaryExpression)operation.GetExpression(member, constant1, constant2);
 

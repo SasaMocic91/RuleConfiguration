@@ -1,4 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
+using RuleConfiguration.Engine.Helpers;
+using RuleConfiguration.Engine.Interfaces;
 using RuleConfiguration.Handlers;
 using RuleConfiguration.Models;
 using RuleConfiguration.Repos;
@@ -15,8 +17,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IMongoDb, MongoDb>();
 builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+builder.Services.AddSingleton<IOperationHelper, OperationHelper>();
 builder.Services.AddTransient<IRuleHandler, RuleHandler>();
 builder.Services.AddTransient<ITicketHandler, TicketHandler>();
+builder.Services.AddTransient<ILookupHandler, LookupHandler>();
 
 builder.Services.AddMemoryCache();
 
@@ -61,7 +65,12 @@ app.MapPost("/tickets", async (ITicketHandler ticketHandler, Ticket ticket) =>
     })
     .WithName("CheckTicket");
 
-
+app.MapGet("/lookup/{className}", async (ILookupHandler handler, string className) =>
+    {
+        var result = await handler.GetOperations(className);
+        return result is not null ? Results.Ok(result) : Results.BadRequest();
+    })
+    .WithName("Lookup");
 app.Run();
 
 
