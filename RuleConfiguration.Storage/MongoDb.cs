@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using RuleConfiguration.Models;
+using RuleConfiguration.Storage.DbModels;
+using RuleConfiguration.Storage.Models;
 
 namespace RuleConfiguration.Storage;
 
@@ -57,7 +58,6 @@ public class MongoDb : IMongoDb
         await _ruleCollection.InsertOneAsync(newRule);
         return newRule.Id;
     }
-
 
     public async Task UpdateRule(Guid tenantId, Guid id, Rule updatedRule)
     {

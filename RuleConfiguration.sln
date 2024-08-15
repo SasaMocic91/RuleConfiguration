@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuleConfiguration.Engine", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuleConfiguration.Engine.Tests", "RuleConfiguration.Engine.Tests\RuleConfiguration.Engine.Tests.csproj", "{E812951F-7856-460D-AF70-C73FF47205A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuleConfiguration.Storage", "RuleConfiguration.Storage\RuleConfiguration.Storage.csproj", "{8073FD6D-3AD6-4EC9-B205-79FB2DF382DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{E812951F-7856-460D-AF70-C73FF47205A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E812951F-7856-460D-AF70-C73FF47205A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E812951F-7856-460D-AF70-C73FF47205A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8073FD6D-3AD6-4EC9-B205-79FB2DF382DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8073FD6D-3AD6-4EC9-B205-79FB2DF382DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8073FD6D-3AD6-4EC9-B205-79FB2DF382DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8073FD6D-3AD6-4EC9-B205-79FB2DF382DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
